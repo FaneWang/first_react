@@ -1,0 +1,22 @@
+{
+  "name": "first_react",
+  "version": "1.0.0",
+  "description": "搭建一个react-redux-router项目",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FaneWang/first_react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FaneWang/first_react/issues"
+  },
+  "homepage": "https://github.com/FaneWang/first_react#readme",
+  "dependencies": {
+    "react": "^16.2.0"
+  }
+}
