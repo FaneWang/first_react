@@ -4,7 +4,9 @@
   "description": "搭建一个react-redux-router项目",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"NODE_ENV=dev webpack-dev-server --process --colors",
+    "build":"rm -rf ./dist && NODE_ENV=production webpack --config ./webpack.config.production.js --process --colors"
   },
   "repository": {
     "type": "git",
