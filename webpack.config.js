@@ -1,46 +1,63 @@
-
-var path = require('path');
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 module.exports = {
-    entry: path.resolve(__dirname, 'app/index.jsx'),
+    devtool: 'source-map',
+    entry: [
+        'babel-polyfill',
+        'react-hot-loader/patch',
+        path.resolve(__dirname, 'app/index.jsx')
+    ],
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist'
+        path: path.resolve(__dirname, '/dist'),
     },
     resolve: {
-        extensions: ['', '.js', '.jsx', '.css']
+        extensions: ['.js', '.jsx', '.css']
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: ['style', 'css']
+                use: [
+                    // 没有选项的loader的简写
+                    'style-loader',
+                    // style-loader的非简写方式
+                    // {
+                    //     loader:'style-loader',
+                    //     option:{
+                    //          module:false
+                    //      }
+                    // }
+                    'css-loader'
+                ]
             },
             {
-                test: /\.js | .jsx$/,
+                test: /(\.jsx|\.js)$/,
                 exclude: /node_modules/,
-                loader: ['react-hot', 'babel']
+                use: [
+                    'babel-loader'
+                ]
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: __dirname + 'dist/index.html'
+            template:__dirname + '/template.html'
         }),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
             }
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        colors: true,
         inline: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        hot: true,
     }
 }
