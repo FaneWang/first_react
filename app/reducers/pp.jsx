@@ -1,9 +1,9 @@
 import * as actionsType from '../constants';
 
-export default function name(state = {}, action) {
+export default function pp(state = {}, action) {
     switch (action.type) {
         case actionsType.TESTTYPE:
-            const newState = {value:action.data};
+            const newState = Object.assign({},state,{value:action.data});
             console.log('*****************');
             console.log(newState);
             console.log('*****************');

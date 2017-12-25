@@ -15,8 +15,8 @@ class TestContainer extends React.Component {
     render() {
         return (
             <div>
-                <h1>{this.props.name}</h1>
-                <Test prarentCHandle={this.prarentCHandle.bind(this)} />
+                <h1>{this.props.value}</h1>
+                <Test prarentCHandle={this.prarentCHandle.bind(this)} value={this.props.value}/>
             </div>
         )
     }
@@ -31,7 +31,7 @@ class TestContainer extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        value: state.value
+        value: state.pp.value
     };
 }
 

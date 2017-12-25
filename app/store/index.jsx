@@ -6,11 +6,12 @@ import rootReducer from '../reducers';
 
 export default function configureStore(initState = {}){
     const store = createStore(
-        rootReducer
+        rootReducer,
+        window.devToolsExtension && window.devToolsExtension()
         // compose的作用是合并各个对store进行加强的插件
         // compose(
         //     applyMiddleware(中间件1，中间件2，。。。，中间件n),
-        //     在这行 可以配置其他开发工具
+        //     window.devToolsExtension && window.devToolsExtensio
         // )
     );
 
@@ -19,7 +20,6 @@ export default function configureStore(initState = {}){
         module.hot.accept('../reducers',() => {
             const nextRootReducer = require('../reducers').default;
             store.replaceReducer(nextRootReducer);
-            console.log(rootReducer);
         })
     }
 

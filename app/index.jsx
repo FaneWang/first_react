@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
-import TestContainer from './containers/test';
+import RouterMap from './routes';
 import configureStore from './store';
 
 let store = configureStore();
@@ -18,37 +18,62 @@ const render = Component => {
   )
 }
 
-render(TestContainer);
+render(RouterMap);
 
 if (module.hot) {
-  module.hot.accept('./containers/test', () => { render(TestContainer) });
+  module.hot.accept('./routes', () => { render(RouterMap) });
 }
 
-
-// import {combineReducers} from 'redux';
+// 函数声明式定义的函数，被大括号包裹，如果不提供名称，则再次调用时使用函数默认名称，
+// 如果指定了键，那么以该键为准,该规则同样适用于函数表达式定义的函数
 // function f1(){
 //   console.log('f1');
 // }
 
-// function f2(){
+// var f2_2 = function f2(){
 //   console.log('f2');
 // }
 
-// function f3(){
+// var f3 = function (){
 //   console.log('f3');
 // }
 
-// const reducers = {
-//   f1,
-//   f2
+
+
+// f2_2();
+// console.log('---------------------------');
+// f2();
+
+// console.log({f1});
+// console.log('---------------------------');
+// console.log({f1_1:f1});
+
+// function update(data){
+//   console.log('actions' + data);
+//   return {
+//       type:"actionsType.TESTTYPE",
+//       data
+//   };
 // }
-// console.log('--------------------------');
-// console.log({...reducers});
-// console.log('--------------------------');
-// console.log(reducers);
 
-// console.log('--------------------------');
-// console.log(combineReducers(reducers));
+// const state = {
+// 	name:"888",
+// 	value:888
+// };
 
-// console.log('--------------------------');
-// console.log(combineReducers({f1,f2}));
+// const actions = update("fffffff");
+
+// const newState2 = {...actions,...state};
+
+// const newState = Object.assign({},state,actions);
+// console.log(state);
+
+// console.log('~~~~~~~~~~~~~~~~');
+
+// console.log(actions);
+
+// console.log('~~~~~~~~~~~~~~~~');
+// console.log(newState);
+
+// console.log('~~~~~~~~~~~~~~~~');
+// console.log(newState2);
