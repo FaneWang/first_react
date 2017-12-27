@@ -1,19 +1,20 @@
 import React from 'react';
-import {Router,Route,IndexRoute,hashHistory} from 'react-router';
-
+import { Route } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+import { history } from '../store';
 import App from '../containers/app';
-import Home from '../containers/home';
-import TestContainer from '../containers/test';
 
-export default class RouterMap extends React.Component{
-    render(){
+
+export default class RouterMap extends React.Component {
+    render() {
         return (
-            <Router history={hashHistory}>
-                <Route path='/' component={App}>
-                    <IndexRoute component={Home}/>
-                    <Route path='test' component={TestContainer}/>
-                </Route>
-            </Router>
+            <ConnectedRouter history={history}>
+                <div>
+                    {/* 这里要注意exact的使用，一定要弄明白在使用 */}
+                    <Route path='/qq' component={App} />
+                    {/* <Route path='/test' component={TestContainer} /> */}
+                </div>
+            </ConnectedRouter>
         )
     }
 }

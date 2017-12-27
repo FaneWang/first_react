@@ -77,3 +77,9 @@ if (module.hot) {
 
 // console.log('~~~~~~~~~~~~~~~~');
 // console.log(newState2);
+
+// import {history} from './store';
+// import configureStore from './store';
+
+// console.log(history);
+// console.log(configureStore);

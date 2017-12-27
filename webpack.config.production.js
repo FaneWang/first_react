@@ -14,9 +14,9 @@ module.exports = {
     output: {
         filename: '[name].[chunkhash:8].js',
         // 指定文件的发布目录
-        path: __dirname + '/dist'
+        path: __dirname + '/dist',
         // index.html中src的引用路径
-        // publicPath: '/dist/'
+        publicPath: '/'
     },
     resolve: { extensions: [ '.js', '.jsx', '.css'] },
     module: {
@@ -30,11 +30,15 @@ module.exports = {
                 })
             },
             {
-                test: /\.js$/,
+                test: /(\.jsx|\.js)$/,
                 exclude: /node_modules/,
                 use: [
                     'babel-loader'
                 ]
+                // options:{
+                //     presets:[["react"],["env",{"modules":false}],["stage-0"]],
+                //     plugins:["react-hot-loader/babel"]
+                // }
             }
         ]
     },
