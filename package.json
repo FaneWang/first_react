@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "set NODE_ENV=dev && webpack-dev-server --config webpack.config.js --progress --color",
+    "start": "set NODE_ENV=dev && webpack-dev-server --config webpack.config.js --progress --color --open",
     "build": "rm -rf ./dist && set NODE_ENV=production && webpack --config webpack.config.production.js --progress --color"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/FaneWang/first_react#readme",
   "dependencies": {
+    "antd": "^3.1.0",
     "babel-polyfill": "^6.26.0",
     "history": "^4.7.2",
     "react": "^16.2.0",
@@ -40,6 +41,8 @@
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
     "style-loader": "^0.19.1",
     "uglifyjs-webpack-plugin": "^1.1.4",
     "webpack": "^3.10.0",

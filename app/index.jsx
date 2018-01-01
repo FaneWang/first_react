@@ -9,7 +9,7 @@ let store = configureStore();
 
 const render = Component => {
   ReactDOM.render(
-    <AppContainer>
+    <AppContainer >
       <Provider store={store}>
         <Component />
       </Provider>

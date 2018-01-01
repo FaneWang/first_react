@@ -11,12 +11,12 @@ module.exports = {
         path.resolve(__dirname, 'app/index.jsx')
     ],
     output: {
-        filename: 'bundle.js',
+        filename: 'js/bundle.[hash:8].js',
         path: path.resolve(__dirname, '/dist'),
-        publicPath:'/'
+        publicPath: '/'
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.css']
+        extensions: ['.js', '.jsx', '.css', '.less']
     },
     module: {
         rules: [
@@ -37,6 +37,24 @@ module.exports = {
                 ]
             },
             {
+                test: /\.less$/,
+                // 使用ant-design这里不能排除node-modules
+                // exclude: /node_modules/,
+                use: [
+                    // 没有选项的loader的简写
+                    'style-loader',
+                    // style-loader的非简写方式
+                    // {
+                    //     loader:'style-loader',
+                    //     option:{
+                    //          module:false
+                    //      }
+                    // }
+                    'css-loader',
+                    'less-loader'
+                ]
+            },
+            {
                 test: /(\.jsx|\.js)$/,
                 exclude: /node_modules/,
                 use: [
@@ -47,7 +65,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template:__dirname + '/template.html'
+            template: __dirname + '/template.html'
         }),
         new webpack.DefinePlugin({
             'process.env': {

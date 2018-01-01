@@ -6,27 +6,35 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    devtool:'source-map',
+    devtool: 'source-map',
     entry: {
         app: path.resolve(__dirname, 'app/index.jsx'),
         vendor: Object.keys(package_json.dependencies)
     },
     output: {
-        filename: '[name].[chunkhash:8].js',
+        filename: 'js/[name].[chunkhash:8].js',
         // 指定文件的发布目录
         path: __dirname + '/dist',
         // index.html中src的引用路径
         publicPath: '/'
     },
-    resolve: { extensions: [ '.js', '.jsx', '.css'] },
+    resolve: { extensions: ['.js', '.jsx', '.css', '.less'] },
     module: {
         rules: [
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
-                    fallback:'style-loader',
-                    use:'css-loader'
+                    fallback: 'style-loader',
+                    use: 'css-loader'
+                })
+            },
+            {
+                test: /\.less$/,
+                // exclude: /node_modules/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: ['css-loader', 'less-loader']
                 })
             },
             {
@@ -44,9 +52,9 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template:__dirname + '/template.html'
+            template: __dirname + '/template.html'
         }),
-        new ExtractTextPlugin('[name].[chunkhash:8].css'),
+        new ExtractTextPlugin('css/app.[chunkhash:8].css'),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV)
@@ -55,7 +63,7 @@ module.exports = {
         new UglifyJsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            filename: '[name].[chunkhash:8].js'
+            filename: 'js/[name].[chunkhash:8].js'
         })
     ]
 }
