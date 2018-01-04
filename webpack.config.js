@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const package_json = require('./package.json');
 
 module.exports = {
     devtool: 'source-map',
@@ -42,7 +42,7 @@ module.exports = {
                 // exclude: /node_modules/,
                 use: [
                     // 没有选项的loader的简写
-                    'style-loader',
+                    { loader: 'style-loader' },
                     // style-loader的非简写方式
                     // {
                     //     loader:'style-loader',
@@ -50,8 +50,14 @@ module.exports = {
                     //          module:false
                     //      }
                     // }
-                    'css-loader',
-                    'less-loader'
+                    { loader: 'css-loader' },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            // 自定义antd主题颜色，后面是固定写法的json
+                            "modifyVars": { "primary-color": "#1DA57A", }
+                        }
+                    }
                 ]
             },
             {
@@ -60,6 +66,16 @@ module.exports = {
                 use: [
                     'babel-loader'
                 ]
+            }, {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 5000,
+                        outputPath: 'images/'
+                    }
+                }]
             }
         ]
     },

@@ -47,6 +47,16 @@ module.exports = {
                 //     presets:[["react"],["env",{"modules":false}],["stage-0"]],
                 //     plugins:["react-hot-loader/babel"]
                 // }
+            }, {
+                test: /\.(png|jpg|jpeg|gif)$/,
+                exclude: /node_modules/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 5000,
+                        outputPath: 'images/'
+                    }
+                }]
             }
         ]
     },

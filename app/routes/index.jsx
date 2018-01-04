@@ -7,18 +7,16 @@ import 'antd/lib/layout/style';
 import './style.css';
 import Copyright from '../components/copyright';
 import FooterInfos from '../components/footer_infos';
-import MenuInfos from '../containers/header';
+import CommonHeader from '../containers/header';
 import App from '../containers/app';
 import Home from '../containers/home';
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 export default class RouterMap extends React.Component {
     render() {
         return (
             <Layout className='layout'>
-                <Header className='route-header'>
-                    <MenuInfos />
-                </Header>
+                <CommonHeader/>
                 <Content className='route-content'>
                     <ConnectedRouter history={history}>
                         <div>

@@ -1,7 +1,19 @@
-.header-wrapper{
-    height:64px;
+.header-container{
+    background-color: white;
+    height: auto;
 }
 .header-logo{
-    height: 64px;
-    width: 64px;
+    height: 57.89px;
+    width: 125.2px;
+    background-image: url(../../static/images/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+}
+/* 当屏幕分辨率小于620px时，隐藏导航菜单 */
+/* 可以利用这种自适应布局显示在另一个折叠菜单来替换原有菜单 */
+@media only screen and (max-width: 620px){
+    .header-menu{
+        display: none;
+    } 
 }
