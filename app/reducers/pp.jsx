@@ -9,7 +9,6 @@ export default function pp(state = {}, action) {
             console.log('*****************');
             return newState;
         default:
-            console.log('运行了');
             return state;
     }
 }

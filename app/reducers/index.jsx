@@ -2,11 +2,13 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import pp from './pp';
 import ff from './ff';
+import getUserInfo from './get-user-info';
 
 const reducers = {
     router: routerReducer,
     pp,
-    ff
+    ff,
+    getUserInfo
 };
 
 // 以一个大括号包裹一个函数，相当于一个对象，这个对象有一个方法，这个方法的默认名称使用函数的名称

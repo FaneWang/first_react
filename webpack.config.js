@@ -69,13 +69,15 @@ module.exports = {
             }, {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 exclude: /node_modules/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        limit: 5000,
-                        outputPath: 'images/'
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 5000,
+                            outputPath: 'images/'
+                        }
                     }
-                }]
+                ]
             }
         ]
     },
