@@ -10,7 +10,7 @@ const loginEpics = (action$) =>
             method:'GET',
             responseType:'json'
         })
-        .map(response => actions.update(response))
+        .map(response => actions.loginSuccess(response.response))
     );
 
 export default loginEpics;

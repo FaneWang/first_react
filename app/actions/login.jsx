@@ -6,3 +6,10 @@ export function update(data){
         ...data
     };
 }
+
+export function loginSuccess(data){
+    return {
+        type:actionsType.LOGINSUCCESSTYPE,
+        ...data
+    };
+}
