@@ -11,47 +11,27 @@ export default class LoginRegister extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: true,
             defaultActiveKey: '1'
         }
     }
 
-    showModal = () => {
-        this.setState({
-            visible: true,
-        });
-    }
-    // handleOk = () => {
-    //     this.setState({
-    //         ModalText: 'The modal will be closed after two seconds',
-    //         confirmLoading: true,
-    //     });
-    //     setTimeout(() => {
-    //         this.setState({
-    //             visible: false,
-    //             confirmLoading: false,
-    //         });
-    //     }, 2000);
-    // }
     handleCancel = () => {
-        this.setState({
-            visible: false,
-        });
+        const handleAppear = this.props.handleAppear;
+        handleAppear();
     }
 
 
     render() {
         return (
             <div>
-                <Modal visible={this.state.visible}
-                    // onOk={this.handleOk}
+                <Modal visible={this.props.visible}
                     onCancel={this.handleCancel}
                     width='360px'
                     footer={null}
                 >
                     <Tabs defaultActiveKey={this.state.defaultActiveKey} >
                         <TabPane tab="登录" key="1">
-                            <LoginForm/>
+                            <LoginForm handleCancel={this.handleCancel.bind(this)}/>
                         </TabPane>
                         <TabPane tab="注册" key="2">
 

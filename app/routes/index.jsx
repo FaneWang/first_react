@@ -10,6 +10,7 @@ import FooterInfos from '../components/footer_infos';
 import CommonHeader from '../containers/header';
 import App from '../containers/app';
 import Home from '../containers/home';
+import TestContainer from '../containers/test';
 import LoginRegister from '../containers/login-register';
 const { Content, Footer } = Layout;
 

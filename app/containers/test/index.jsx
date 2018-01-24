@@ -24,8 +24,8 @@ class TestContainer extends React.Component {
 
     prarentCHandle(name) {
         const actions = this.props.nameInfo;
-        actions.update(name);
         console.log(actions.update(name));
+        actions.update(name);
     }
 }
 

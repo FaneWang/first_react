@@ -14,10 +14,14 @@ class LoginForm extends React.Component {
         }
     }
 
+    // 点击当前组件的子组件的登录按钮后会调用该方法处理登录逻辑
     handleLogin = (username,password) => {
         const loginAction = this.props.loginAction;
         loginAction.update({username,password});
-        console.log(username + '-----' + password);
+        // console.log('登录成功！！！' + this.props.userInfo.username);
+        // 如果登录成功，那么获取当前组件父组件的handleCancel方法并执行，让登录界面消失
+        const handleCancel = this.props.handleCancel;
+        handleCancel();
     }
 
     

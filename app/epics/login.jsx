@@ -8,7 +8,8 @@ const loginEpics = (action$) =>
         action => ajax({
             url:'https://cheliao-78dfe.firebaseio.com/userinfo.json',
             method:'GET',
-            responseType:'json'
+            responseType:'json',
+            async:false
         })
         .map(response => actions.loginSuccess(response.response))
     );
