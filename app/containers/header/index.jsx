@@ -14,46 +14,71 @@ import './style.css';
 const { Header } = Layout;
 import logoImg from '../../static/images/logo.png';
 import buttonGroup from 'antd/lib/button/button-group';
-const ButtonGroup = Button.Group;
-const CommonHeader = () => (
-    <Header className='header-container'>
-        <Row>
-            <Col lg={3} ></Col>
-            <Col lg={3} sm={2} >
-                {/* logo */}
-                <a href="/">
-                    {/* <div className='header-logo'></div> */}
-                    <img src={logoImg} alt="logo" className='header-logo' />
-                </a>
-            </Col>
-            <Col lg={4} sm={4}></Col>
-            <Col lg={10} sm={18}>
-                {/* 导航栏 */}
-                <Menu theme="light" mode="horizontal"
-                    defaultSelectedKeys={['1']} style={{ lineHeight: '64px' }}
-                    className='header-menu'
-                >
-                    <Menu.Item key="1"><Link to='/'>首页</Link></Menu.Item>
-                    <Menu.Item key="2"><Link to='/learn'>学习日记</Link></Menu.Item>
-                    <Menu.Item key="3"><Link to='/journey'>趣闻轶事</Link></Menu.Item>
-                    <Menu.Item key="4"><Link to='/about'>个人简介</Link></Menu.Item>
+import LoginRegister from '../login-register';
 
-                </Menu>
-            </Col>
-            <Col lg={1}>
-                <div className='header-menu'><Button icon='search' size='small' /></div>
-            </Col>
-            <Col lg={3}>
-                <div className='header-menu'>
-                    <ButtonGroup>
-                        <Button className='header-menu-button' size='small'>登录</Button>
-                        <span> / </span>
-                        <Button className='header-menu-button' size='small'>注册</Button>
-                    </ButtonGroup>
-                </div>
-            </Col>
-        </Row>
-    </Header>
-)
+
+
+
+const ButtonGroup = Button.Group;
+class CommonHeader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
+    render() {
+        return (
+            <Header className='header-container'>
+                <Row>
+                    <Col lg={3} ></Col>
+                    <Col lg={3} sm={2} >
+                        {/* logo */}
+                        <a href="/">
+                            {/* <div className='header-logo'></div> */}
+                            <img src={logoImg} alt="logo" className='header-logo' />
+                        </a>
+                    </Col>
+                    <Col lg={4} sm={4}></Col>
+                    <Col lg={10} sm={18}>
+                        {/* 导航栏 */}
+                        <Menu theme="light" mode="horizontal"
+                            defaultSelectedKeys={['1']} style={{ lineHeight: '64px' }}
+                            className='header-menu'
+                        >
+                            <Menu.Item key="1"><Link to='/'>首页</Link></Menu.Item>
+                            <Menu.Item key="2"><Link to='/learn'>学习日记</Link></Menu.Item>
+                            <Menu.Item key="3"><Link to='/journey'>趣闻轶事</Link></Menu.Item>
+                            <Menu.Item key="4"><Link to='/about'>个人简介</Link></Menu.Item>
+
+                        </Menu>
+                    </Col>
+                    <Col lg={1}>
+                        <div className='header-menu'><Button icon='search' size='small' /></div>
+                    </Col>
+                    <Col lg={3}>
+                        <div className='header-menu'>
+                            <ButtonGroup>
+                                <Button className='header-menu-button'
+                                    size='small'
+                                    onClick={this.handleClick.bind(this)}
+                                > 登录</Button>
+                                <span> / </span>
+                                <Button className='header-menu-button' size='small'>注册</Button>
+                            </ButtonGroup>
+                        </div>
+                    </Col>
+                </Row>
+            </Header>
+        )
+    }
+
+    // 点击登录出现登陆面板
+    handleClick = () => {
+        console.log('显示登录组件');
+    }
+}
+
 
 export default CommonHeader;
