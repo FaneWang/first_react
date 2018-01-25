@@ -72,19 +72,9 @@ class CommonHeader extends React.Component {
         }
 
         let loginMenu = null;
-        if (this.props.loginInfo) {
-            if (this.props.loginInfo.username) {
-                loginMenu = <label>{this.props.loginInfo.username}</label>;
-            }else {
-                loginMenu = <ButtonGroup>
-                    <Button className='header-menu-button'
-                        size='small'
-                        onClick={this.handleClick.bind(this)}
-                    > 登录</Button>
-                    <span> / </span>
-                    <Button className='header-menu-button' size='small'>注册</Button>
-                </ButtonGroup>;
-            }
+        const storage = window.localStorage;
+        if (storage.username) {
+            loginMenu = <label>{this.storage.username}</label>;
         } else {
             loginMenu = <ButtonGroup>
                 <Button className='header-menu-button'
@@ -95,6 +85,30 @@ class CommonHeader extends React.Component {
                 <Button className='header-menu-button' size='small'>注册</Button>
             </ButtonGroup>;
         }
+
+        // if (this.props.loginInfo) {
+        //     if (this.props.loginInfo.username) {
+        //         loginMenu = <label>{this.props.loginInfo.username}</label>;
+        //     }else {
+        //         loginMenu = <ButtonGroup>
+        //             <Button className='header-menu-button'
+        //                 size='small'
+        //                 onClick={this.handleClick.bind(this)}
+        //             > 登录</Button>
+        //             <span> / </span>
+        //             <Button className='header-menu-button' size='small'>注册</Button>
+        //         </ButtonGroup>;
+        //     }
+        // } else {
+        //     loginMenu = <ButtonGroup>
+        //         <Button className='header-menu-button'
+        //             size='small'
+        //             onClick={this.handleClick.bind(this)}
+        //         > 登录</Button>
+        //         <span> / </span>
+        //         <Button className='header-menu-button' size='small'>注册</Button>
+        //     </ButtonGroup>;
+        // }
 
         return (
             <div>
