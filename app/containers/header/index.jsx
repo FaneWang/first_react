@@ -73,8 +73,9 @@ class CommonHeader extends React.Component {
 
         let loginMenu = null;
         const storage = window.localStorage;
+        console.log(storage.username);
         if (storage.username) {
-            loginMenu = <label>{this.storage.username}</label>;
+            loginMenu = <label>{storage.username}</label>;
         } else {
             loginMenu = <ButtonGroup>
                 <Button className='header-menu-button'
