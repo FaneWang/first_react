@@ -17,9 +17,9 @@ const { Content, Footer } = Layout;
 export default class RouterMap extends React.Component {
 
     render() {
-        const storage = window.localStorage;
-        storage.a = 4;
-        console.log("当前的路径为：" + storage.a);
+        // const storage = window.localStorage;
+        // storage.a = 4;
+        // console.log("当前的路径为：" + storage.a);
         return (
             <ConnectedRouter history={history}>
                 <Layout className='layout'>

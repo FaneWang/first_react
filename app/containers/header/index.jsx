@@ -71,35 +71,22 @@ class CommonHeader extends React.Component {
             }
         }
 
-        let loginMenu = null;
-        const storage = window.localStorage;
-        console.log(storage.username);
-        if (storage.username) {
-            loginMenu = <label>{storage.username}</label>;
-        } else {
-            loginMenu = <ButtonGroup>
-                <Button className='header-menu-button'
-                    size='small'
-                    onClick={this.handleClick.bind(this)}
-                > 登录</Button>
-                <span> / </span>
-                <Button className='header-menu-button' size='small'>注册</Button>
-            </ButtonGroup>;
+        // 将登陆信息保存在localStorage中，然后通过检查登陆状态保持登陆，检查方法在utils中
+        // 这里还应该进一步优化，因为直接保存username会存在安全隐患，因此还应该加密
+        // 这里暂时存储用户信息到storage中，实际环境存储后台返回来的验证数据，其后在每次发出
+        // 登陆或检查登陆状态或者需要登陆权限的请求中带上storage数据，具体见epics中注释所述
+        if (this.props.loginInfo) {
+            if (this.props.loginInfo.username) {
+                localStorage.setItem("username", this.props.loginInfo.username);
+                localStorage.setItem("password", this.props.loginInfo.password);
+            }
         }
 
-        // if (this.props.loginInfo) {
-        //     if (this.props.loginInfo.username) {
-        //         loginMenu = <label>{this.props.loginInfo.username}</label>;
-        //     }else {
-        //         loginMenu = <ButtonGroup>
-        //             <Button className='header-menu-button'
-        //                 size='small'
-        //                 onClick={this.handleClick.bind(this)}
-        //             > 登录</Button>
-        //             <span> / </span>
-        //             <Button className='header-menu-button' size='small'>注册</Button>
-        //         </ButtonGroup>;
-        //     }
+        // let loginMenu = null;
+        // const storage = window.localStorage;
+        // console.log(storage.username);
+        // if (storage.username) {
+        //     loginMenu = <label>{storage.username}</label>;
         // } else {
         //     loginMenu = <ButtonGroup>
         //         <Button className='header-menu-button'
@@ -110,6 +97,28 @@ class CommonHeader extends React.Component {
         //         <Button className='header-menu-button' size='small'>注册</Button>
         //     </ButtonGroup>;
         // }
+        // console.log(localStorage.getItem("username"));
+
+        let loginState = null;
+
+        let loginMenu = <ButtonGroup>
+            <Button className='header-menu-button'
+                size='small'
+                onClick={this.handleClick.bind(this)}
+            > 登录</Button>
+            <span> / </span>
+            <Button className='header-menu-button' size='small'>注册</Button>
+        </ButtonGroup>;
+
+        if (this.props.loginInfo) {
+            if (this.props.loginInfo.username) {
+                loginState = <label>{this.props.loginInfo.username}</label>;
+            } else {
+                loginState = loginMenu;
+            }
+        } else {
+            loginState = loginMenu;
+        }
 
         return (
             <div>
@@ -142,7 +151,7 @@ class CommonHeader extends React.Component {
                         </Col>
                         <Col lg={3}>
                             <div className='header-menu'>
-                                {loginMenu}
+                                {loginState}
                             </div>
                         </Col>
                     </Row>

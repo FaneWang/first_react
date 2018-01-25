@@ -38,13 +38,10 @@ class LoginForm extends React.Component {
 
 
     render() {
-        // if (this.props.loginInfo) {
-        //     if (this.props.loginInfo.username) {
-        //         const storage = window.localStorage;
-        //         storage.username = this.props.loginInfo.username;
-        //         storage.password = this.props.loginInfo.password;
-        //     }
-        // }
+        
+
+        // localStorage.setItem("a","168");
+        // console.log("当前的路径为：" + storage.a);
         return (
             <div>
                 <LoginComponent handleLogin={this.handleLogin.bind(this)} />

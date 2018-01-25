@@ -22,8 +22,8 @@ export default class LoginRegister extends React.Component {
 
 
     render() {
-        const storage = window.localStorage;
-        console.log('storage:::' + storage.a);
+        // const storage = window.localStorage;
+        // console.log('storage:::' + storage.a);
         return (
             <div>
                 <Modal visible={this.props.visible}
