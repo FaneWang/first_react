@@ -38,13 +38,13 @@ class LoginForm extends React.Component {
 
 
     render() {
-        if (this.props.loginInfo) {
-            if (this.props.loginInfo.username) {
-                const storage = window.localStorage;
-                storage.username = this.props.loginInfo.username;
-                storage.password = this.props.loginInfo.password;
-            }
-        }
+        // if (this.props.loginInfo) {
+        //     if (this.props.loginInfo.username) {
+        //         const storage = window.localStorage;
+        //         storage.username = this.props.loginInfo.username;
+        //         storage.password = this.props.loginInfo.password;
+        //     }
+        // }
         return (
             <div>
                 <LoginComponent handleLogin={this.handleLogin.bind(this)} />

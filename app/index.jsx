@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { AppContainer } from 'react-hot-loader';
 import RouterMap from './routes';
 import configureStore from './store';
-import loginCheck from './utils';
+// import loginCheck from './utils';
 let store = configureStore();
 
 const render = Component => {
