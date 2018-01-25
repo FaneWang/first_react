@@ -15,7 +15,9 @@ import LoginRegister from '../containers/login-register';
 const { Content, Footer } = Layout;
 
 export default class RouterMap extends React.Component {
+
     render() {
+        console.log("当前的路径为：" + history.location.state);
         return (
             <ConnectedRouter history={history}>
                 <Layout className='layout'>

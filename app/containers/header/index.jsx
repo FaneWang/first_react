@@ -11,14 +11,15 @@ import 'antd/lib/row/style';
 import 'antd/lib/col/style';
 import 'antd/lib/menu/style';
 import './style.css';
+import message from 'antd/lib/message';
+import 'antd/lib/message/style';
 const { Header } = Layout;
 import logoImg from '../../static/images/logo.png';
 import buttonGroup from 'antd/lib/button/button-group';
 import LoginRegister from '../login-register';
 import { connect } from 'react-redux';
-
-
-
+import { bindActionCreators } from 'redux';
+import * as loginButtonClickActionFromOther from '../../actions/login';
 
 const ButtonGroup = Button.Group;
 class CommonHeader extends React.Component {
@@ -29,8 +30,18 @@ class CommonHeader extends React.Component {
         }
     }
 
+    // componentWillUnmount() {
+    //     if (this.props.loginInfo) {
+    //         console.log('登录错误打印：' + this.props.loginInfo.errorMsg);
+    //         message.error(this.props.loginInfo.errorMsg);
+    //     }
+    // }
+
     // 点击登录出现登陆面板
     handleClick = () => {
+        const loginButtonClickAction = this.props.loginButtonClickAction;
+        loginButtonClickAction.loginButtonClick();
+
         this.setState({
             visible: true
         });
@@ -39,16 +50,52 @@ class CommonHeader extends React.Component {
 
     // 处理登录注册面板显隐
     handleAppear = () => {
-        if (this.props.userInfo) {
-            console.log(this.props.userInfo.username);
+        if (this.props.loginInfo) {
+            console.log(this.props.loginInfo.username);
         }
-        
+
         this.setState({
             visible: false
         });
+
     }
 
     render() {
+
+        // 因为render方法组件显示与消失都会执行，下面的提示消息在界面显示时也会执行
+        // 为了避免这个问题，在handleClick方法中发出一个action，将state中errorMsg重置为空状态
+        if (this.props.loginInfo) {
+            if (this.props.loginInfo.errorMsg) {
+                console.log('登录错误打印：' + this.props.loginInfo.errorMsg);
+                message.error(this.props.loginInfo.errorMsg);
+            }
+        }
+
+        let loginMenu = null;
+        if (this.props.loginInfo) {
+            if (this.props.loginInfo.username) {
+                loginMenu = <label>{this.props.loginInfo.username}</label>;
+            }else {
+                loginMenu = <ButtonGroup>
+                    <Button className='header-menu-button'
+                        size='small'
+                        onClick={this.handleClick.bind(this)}
+                    > 登录</Button>
+                    <span> / </span>
+                    <Button className='header-menu-button' size='small'>注册</Button>
+                </ButtonGroup>;
+            }
+        } else {
+            loginMenu = <ButtonGroup>
+                <Button className='header-menu-button'
+                    size='small'
+                    onClick={this.handleClick.bind(this)}
+                > 登录</Button>
+                <span> / </span>
+                <Button className='header-menu-button' size='small'>注册</Button>
+            </ButtonGroup>;
+        }
+
         return (
             <div>
                 <Header className='header-container'>
@@ -80,19 +127,12 @@ class CommonHeader extends React.Component {
                         </Col>
                         <Col lg={3}>
                             <div className='header-menu'>
-                                <ButtonGroup>
-                                    <Button className='header-menu-button'
-                                        size='small'
-                                        onClick={this.handleClick.bind(this)}
-                                    > 登录</Button>
-                                    <span> / </span>
-                                    <Button className='header-menu-button' size='small'>注册</Button>
-                                </ButtonGroup>
+                                {loginMenu}
                             </div>
                         </Col>
                     </Row>
                 </Header>
-                               
+
                 <LoginRegister visible={this.state.visible} handleAppear={this.handleAppear.bind(this)} />
             </div>
 
@@ -103,10 +143,20 @@ class CommonHeader extends React.Component {
 }
 
 
+function mapStateToProps(state) {
+    return {
+        loginInfo: state.getUserInfo.loginInfo
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        loginButtonClickAction: bindActionCreators(loginButtonClickActionFromOther, dispatch)
+    };
+}
+
 export default connect(
-    state => ({
-        userInfo:state.getUserInfo.userInfo
-    }),
-    null
+    mapStateToProps,
+    mapDispatchToProps
 )(CommonHeader);
 // export default CommonHeader;

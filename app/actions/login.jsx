@@ -13,3 +13,9 @@ export function loginSuccess(data){
         data
     };
 }
+
+export function loginButtonClick(){
+    return {
+        type:actionsType.LOGINBUTTONCLICKTYPE
+    };
+}
