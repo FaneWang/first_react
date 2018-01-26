@@ -25,6 +25,7 @@ class LoginForm extends React.Component {
     // 点击当前组件的子组件的登录按钮后会调用该方法处理登录逻辑
     handleLogin = (username, password) => {
         const loginAction = this.props.loginAction;
+        // 这里的用户名，密码应该加密后再传
         loginAction.update({ username, password });
         // 在这里打印props中的内容是会报错的，react-redux的connect方法在组件显示前执行一次，此时
         // state中时没有username的，异步获取数据后，connect方法会再执行一次，还是在组件更新显示前，

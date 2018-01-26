@@ -28,8 +28,7 @@ export default function configureStore(initState = {}) {
 
     // const store = createStore(
     //     rootReducer,
-    //     applyMiddleware(middleware, epicMiddleware),
-    //     window.devToolsExtension && window.devToolsExtension()
+    //     applyMiddleware(middleware, epicMiddleware)
     // );
 
     // 配置热更新
